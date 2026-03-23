@@ -1,5 +1,5 @@
 - name: Check MQ processes
-  shell: "ps -ef | grep '[a]mqm' "
+  shell: "ps -ef | grep '[a]mq' "
   register: mq_process
   changed_when: false
 
