@@ -3,9 +3,9 @@
   gather_facts: False
 
   roles:
-    - mq_ping
-    - mq_process_check
-    - mq_qm_status
-    - mq_queues_check
-    - mq_logs_check
-    - mq_summary
+    - { role: mq_ping, tags: ["ping"] }
+    - { role: mq_process_check, tags: ["process"] }
+    - { role: mq_qm_status, tags: ["qm"] }
+    - { role: mq_queues_check, tags: ["queues"] }
+    - { role: mq_logs_check, tags: ["logs"] }
+    - { role: mq_summary, tags: ["summary"] }
