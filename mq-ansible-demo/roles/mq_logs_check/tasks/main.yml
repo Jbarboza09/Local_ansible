@@ -1,0 +1,11 @@
+- name: Read MQ error log
+  shell: "tail -n 20 /var/mqm/qmgrs/{{ qm_name }}/errors/AMQERR01.LOG"
+  register: mq_logs
+  changed_when: false
+  ignore_errors: true
+  become: true
+  become_user: mqm
+
+- name: Search for errors
+  set_fact:
+    mq_errors: "{{ mq_logs.stdout_lines | select('search', 'AMQ') | list }}"

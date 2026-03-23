@@ -1,0 +1,11 @@
+- name: MQ Health Check Workflow
+  hosts: all
+  gather_facts: False
+
+  roles:
+    - mq_ping
+    - mq_process_check
+    - mq_qm_status
+    - mq_queues_check
+    - mq_logs_check
+    - mq_summary

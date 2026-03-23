@@ -1,0 +1,3 @@
+- name: Check MQ processes
+  shell: "ps -ef | grep -i mq | grep -v grep"
+  register: mq_process

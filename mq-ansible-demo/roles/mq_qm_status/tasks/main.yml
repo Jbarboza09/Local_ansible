@@ -1,0 +1,11 @@
+- name: Check Queue Manager status
+  shell: "dspmq"
+  register: qm_status
+  changed_when: false
+  become: true
+  become_user: mqm
+
+- name: Fail if QM not running
+  fail:
+    msg: "Queue Manager is not running"
+  when: "'RUNNING' not in qm_status.stdout"

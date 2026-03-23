@@ -1,0 +1,8 @@
+- name: Show MQ Summary
+  debug:
+    msg:
+      - "===== MQ HEALTH SUMMARY ====="
+      - "QM Status: {{ qm_status.stdout }}"
+      - "MQ Processes found: {{ mq_process.stdout_lines | length }}"
+      - "Queues checked: {{ queue_depth_lines | length }}"
+      - "Errors found: {{ mq_errors | length }}"

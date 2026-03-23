@@ -1,0 +1,11 @@
+- name: Check queues depth
+  shell: |
+    echo "DISPLAY QLOCAL(*) CURDEPTH" | runmqsc {{ qm_name }}
+  register: queues_output
+  changed_when: false
+  become: true
+  become_user: mqm
+
+- name: Extract queue depth lines
+  set_fact:
+    queue_depth_lines: "{{ queues_output.stdout_lines | select('search', 'CURDEPTH') | list }}"
