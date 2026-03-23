@@ -1,3 +1,9 @@
 - name: Check MQ processes
-  shell: "ps -ef | grep -i mq | grep -v grep"
+  shell: "ps -ef | grep '[a]mqm' "
   register: mq_process
+  changed_when: false
+
+- name: Fail if no MQ processes found
+  fail:
+    msg: "No MQ processes running on this host!"
+  when: mq_process.stdout_lines | length == 0
